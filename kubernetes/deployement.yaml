@@ -34,13 +34,13 @@ spec:
   replicas: 4
   selector:
     matchlabels:
-      app: python
-# This is the template of the pods to be deployed by this deployement and the pods will have a lable app: python which
-# is used by the deployement in match labels to communicate/manage the pods
+      name: python-pods
+  # This is the template of the pods to be deployed by this deployement and the pods will have a lable app: python which
+  # is used by the deployement in match labels to communicate/manage the pods
   template:
     metadata:
       labels:
-        app: python
+        name: python-pods
     spec:
       containers:
         - name: hello-python
