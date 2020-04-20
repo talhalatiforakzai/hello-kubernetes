@@ -29,7 +29,6 @@ metadata:
   namespace: hello-k8s
   labels:
     app: python
-    tier: backend
 # the second selector, is actually a selector for the deployment to apply to the pod that the deployment is describing.
 spec:
   replicas: 4
@@ -45,7 +44,7 @@ spec:
     spec:
       containers:
         - name: hello-python
-          image: hello-python:latest
+          image: 191295/test:tagname
           imagePullPolicy: Never
           ports:
             - containerPort: 5000
