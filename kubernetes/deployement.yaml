@@ -22,21 +22,17 @@ spec:
 ---
 apiVersion: apps/v1
 kind: Deployment
-# the first metadata describes the deployment itself. It gives a label for that actual deployment.
-# So, if you want to delete that deployment, you would say kubectl delete -l app=python,tier=backend.
 metadata:
   name: hello-k8-app
   namespace: hello-k8s
   labels:
-    app: python
-# the second selector, is actually a selector for the deployment to apply to the pod that the deployment is describing.
+    app: pythonk8
+    tier: backend
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchlabels:
       app: python
-  # This is the template of the pods to be deployed by this deployement and the pods will have a lable app: python which
-  # is used by the deployement in match labels to communicate/manage the pods
   template:
     metadata:
       labels:
