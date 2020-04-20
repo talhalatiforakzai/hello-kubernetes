@@ -8,11 +8,11 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-python-service
+  name: hello-k8-service
   namespace: hello-k8s
 spec:
   selector:
-    app: hello-python
+    app: python
   ports:
     - protocol: "TCP"
       port: 6000
@@ -22,15 +22,26 @@ spec:
 ---
 apiVersion: apps/v1
 kind: Deployment
+# the first metadata describes the deployment itself. It gives a label for that actual deployment.
+# So, if you want to delete that deployment, you would say kubectl delete -l app=python,tier=backend.
 metadata:
-  name: hello-python
+  name: hello-k8-app
   namespace: hello-k8s
+  labels:
+    app: python
+    tier: backend
+# the second selector, is actually a selector for the deployment to apply to the pod that the deployment is describing.
 spec:
   replicas: 4
+  selector:
+    matchlabels:
+      app: python
+# This is the template of the pods to be deployed by this deployement and the pods will have a lable app: python which
+# is used by the deployement in match labels to communicate/manage the pods
   template:
     metadata:
       labels:
-        app: hello-python
+        app: python
     spec:
       containers:
         - name: hello-python
