@@ -41,6 +41,6 @@ spec:
       containers:
         - name: hello-python
           image: 191295/test:tagname
-          imagePullPolicy: Never
+          imagePullPolicy: always
           ports:
             - containerPort: 5000
