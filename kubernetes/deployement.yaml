@@ -28,19 +28,19 @@ metadata:
   name: hello-k8-app
   namespace: hello-k8s
   labels:
-    app: python
+    name: python-app-dep
 # the second selector, is actually a selector for the deployment to apply to the pod that the deployment is describing.
 spec:
   replicas: 4
   selector:
     matchlabels:
-      name: python-pods
+      app: python
   # This is the template of the pods to be deployed by this deployement and the pods will have a lable app: python which
   # is used by the deployement in match labels to communicate/manage the pods
   template:
     metadata:
       labels:
-        name: python-pods
+        app: python
     spec:
       containers:
         - name: hello-python
